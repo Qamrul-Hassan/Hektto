@@ -62,9 +62,9 @@ const LoginPage = () => {
             <p className="text-red-500 text-sm mb-4">{error}</p>
           )}
           <div className="text-right mb-4">
-            <a href="#" className="text-pink-500 text-sm hover:underline">
+            <Link to="/forgot-password" className="text-pink-500 text-sm hover:underline">
               Forgot your password?
-            </a>
+            </Link>
           </div>
           <button
             type="submit"
