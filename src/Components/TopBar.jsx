@@ -1,4 +1,11 @@
-import { FaEnvelope, FaPhoneAlt, FaHeart, FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
+import {
+  FaEnvelope,
+  FaPhoneAlt,
+  FaHeart,
+  FaShoppingCart,
+  FaBars,
+  FaTimes,
+} from "react-icons/fa";
 import { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { DataContext } from "../Components/DataContext";
@@ -6,9 +13,9 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 
 const TopBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false); // State for mobile menu
-  const [user, setUser] = useState(null); // State to track logged-in user
+  const [user, setUser] = useState(null); // State for logged-in user
 
-  const { cart, wishlist } = useContext(DataContext); // Context for cart and wishlist
+  const { cart, wishlist } = useContext(DataContext);
 
   const totalCartItems = cart.reduce((total, item) => total + item.quantity, 0);
   const totalWishlistItems = wishlist.length;
@@ -24,16 +31,13 @@ const TopBar = () => {
   const handleLogout = () => {
     const auth = getAuth();
     signOut(auth)
-      .then(() => {
-        setUser(null);
-      })
-      .catch((error) => {
-        console.error("Error logging out:", error);
-      });
+      .then(() => setUser(null))
+      .catch((error) => console.error("Error logging out:", error));
   };
 
   return (
     <div className="bg-purple-600 h-16 flex items-center justify-between px-4 text-white relative">
+      {/* Left side content (Email, Phone) */}
       <div className="flex items-center space-x-6 text-sm">
         <div className="flex items-center space-x-2">
           <FaEnvelope title="Email" />
@@ -45,6 +49,7 @@ const TopBar = () => {
         </div>
       </div>
 
+      {/* Burger Menu Icon for smaller screens */}
       <button
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         className="sm:hidden focus:outline-none text-lg"
@@ -53,6 +58,7 @@ const TopBar = () => {
         {isMenuOpen ? <FaTimes /> : <FaBars />}
       </button>
 
+      {/* Center content for larger screens */}
       <div className="hidden sm:flex items-center space-x-6 text-sm">
         <select
           className="bg-purple-600 border-none text-sm font-josefin text-white cursor-pointer outline-none focus:ring focus:ring-purple-400"
@@ -85,6 +91,7 @@ const TopBar = () => {
           </Link>
         )}
 
+        {/* Wishlist Icon */}
         <Link to="/shop-wishlist">
           <div className="relative">
             <FaHeart className="text-2xl cursor-pointer" title="Wishlist" />
@@ -96,6 +103,7 @@ const TopBar = () => {
           </div>
         </Link>
 
+        {/* Shopping Cart Icon */}
         <Link to="/cart">
           <div className="relative">
             <FaShoppingCart className="text-2xl cursor-pointer" title="Shopping Cart" />
@@ -106,6 +114,66 @@ const TopBar = () => {
             )}
           </div>
         </Link>
+      </div>
+
+      {/* Mobile Slide-in Menu */}
+      <div
+        className={`fixed top-0 left-0 w-[35%] h-[50%] rounded-r-xl bg-purple-600 text-white p-6 sm:hidden z-20 transform transition-transform duration-700 ease-in-out ${
+          isMenuOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <button
+          onClick={() => setIsMenuOpen(false)}
+          className="text-white text-2xl absolute top-4 right-4 focus:outline-none"
+        >
+          <FaTimes />
+        </button>
+        <ul className="space-y-6 text-sm mt-12">
+          <li>
+            <select
+              className="w-full bg-purple-600 border-none text-sm font-josefin text-white cursor-pointer outline-none focus:ring focus:ring-purple-400"
+              defaultValue="English"
+            >
+              <option value="English">English</option>
+              <option value="Bangla">Bangla</option>
+              <option value="French">French</option>
+            </select>
+          </li>
+          <li>
+            <select
+              className="w-full bg-purple-600 border-none text-sm font-josefin text-white cursor-pointer outline-none focus:ring focus:ring-purple-400"
+              defaultValue="USD"
+            >
+              <option value="USD">USD</option>
+              <option value="TK">BDT</option>
+              <option value="Euro">Euro</option>
+            </select>
+          </li>
+          <li>
+            {user ? (
+              <button
+                onClick={handleLogout}
+                className="block font-josefin font-semibold text-sm"
+              >
+                Log Out
+              </button>
+            ) : (
+              <Link to="/login" className="block font-josefin font-semibold text-sm">
+                Login
+              </Link>
+            )}
+          </li>
+          <li>
+            <Link to="/shop-wishlist" className="block">
+              Wishlist ({totalWishlistItems})
+            </Link>
+          </li>
+          <li>
+            <Link to="/cart" className="block">
+              Cart ({totalCartItems})
+            </Link>
+          </li>
+        </ul>
       </div>
     </div>
   );
