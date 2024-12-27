@@ -9,7 +9,7 @@ const CreateAccountPage = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [shortName, setShortName] = useState("");
+  const [userId, setUserId] = useState(""); // Changed to User ID
   const [error, setError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -60,7 +60,7 @@ const CreateAccountPage = () => {
     e.preventDefault();
 
     // Validate if fields are empty
-    if (!firstName || !lastName || !shortName || !email || !password || !confirmPassword) {
+    if (!firstName || !lastName || !userId || !email || !password || !confirmPassword) {
       setError("All fields are required!");
       return;
     }
@@ -121,13 +121,13 @@ const CreateAccountPage = () => {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-1">Short Name</label>
+            <label className="block text-sm font-medium mb-1">User ID</label>
             <input
               type="text"
-              placeholder="Short Name"
+              placeholder="User ID"
               className="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-pink-500"
-              value={shortName}
-              onChange={(e) => setShortName(e.target.value)}
+              value={userId}
+              onChange={(e) => setUserId(e.target.value)}
             />
           </div>
           <div className="mb-4">
