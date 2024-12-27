@@ -1,0 +1,33 @@
+
+.custom-slider .slick-slide {
+    opacity: 0.6;  
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .custom-slider .slick-center .custom-card {
+    opacity: 1; 
+  }
+  
+  .custom-slider .slick-prev,
+  .custom-slider .slick-next {
+    z-index: 10;
+  }
+  
+  .custom-slider .slick-prev {
+    left: -20px;
+  }
+  
+  .custom-slider .slick-next {
+    right: -20px;
+  }
+  
+  
+  .custom-slider .slick-slide {
+    margin-right: 15px; 
+  }
+  
+  .custom-slider .slick-track {
+    display: flex;
+    justify-content: flex-start;
+  }
+  
