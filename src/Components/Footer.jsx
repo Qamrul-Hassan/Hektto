@@ -16,7 +16,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-[#F1F0FF] text-gray-700 py-8 px-20">
+    <footer className="bg-[#F1F0FF] text-gray-700 py-8 ">
       <div className="container mx-auto px-4 lg:px-20">
         <div className="flex flex-wrap justify-between">
           {/* Sign Up Section */}
