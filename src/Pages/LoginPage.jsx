@@ -27,7 +27,7 @@ const LoginPage = () => {
   return (
     <PageLayout pageTitle="My Account">
       <div className="bg-white p-8 rounded shadow-md w-full max-w-md mx-auto">
-        <h2 className="text-2xl font-semibold text-center mb-2 font-josefin">Login</h2>
+        <h2 className="text-2xl font-semibold text-center mb-2 font-josefin text-[#1D3178]">Login</h2>
         <p className="text-gray-500 text-center mb-6 font-lato">
           Please login using your account details below.
         </p>

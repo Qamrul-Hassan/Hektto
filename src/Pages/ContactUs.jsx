@@ -12,7 +12,7 @@ const ContactUs = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-5xl">
           
           <div>
-            <h2 className="text-xl lg:text-2xl font-bold text-[#0D0E43] font-josefin">Information About Us</h2>
+            <h2 className="text-xl lg:text-2xl font-bold text-[#1D3178] font-josefin">Information About Us</h2>
             <p className="text-sm lg:text-base text-gray-600 mt-4 font-lato">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mattis neque ultrices mattis
               aliquam, malesuada diam est.
@@ -26,7 +26,7 @@ const ContactUs = () => {
 
           
           <div>
-            <h2 className="text-xl lg:text-2xl font-bold text-[#0D0E43] font-josefin">Contact Way</h2>
+            <h2 className="text-xl lg:text-2xl font-bold text-[#1D3178] font-josefin">Contact Way</h2>
             <ul className="mt-4 space-y-4 text-sm lg:text-base">
               <li className="flex items-center space-x-3">
                 <FaPhoneAlt className="text-blue-500 font-lato" />
@@ -48,7 +48,7 @@ const ContactUs = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-5xl mt-12">
           
           <div>
-            <h2 className="text-xl lg:text-2xl font-bold text-[#0D0E43] font-josefin">Get In Touch</h2>
+            <h2 className="text-xl lg:text-2xl font-bold text-[#1D3178] font-josefin">Get In Touch</h2>
             <p className="text-sm lg:text-base text-gray-600 mt-4">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mattis neque ultrices tristique amet erat vitae eget dolor vitae lobortis quis bibendum quam.
             </p>

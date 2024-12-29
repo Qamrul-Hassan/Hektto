@@ -95,7 +95,7 @@ const Shop = () => {
 
         <div className="lg:w-3/4">
           <div className="bg-white p-4 rounded-lg shadow-md mb-6">
-            <h2 className="text-lg font-bold mb-4 font-lato">Ecommerce Accessories & Fashion Items</h2>
+            <h2 className="text-xl font-bold mb-4 font-josefin text-[#1D3178]">Ecommerce Accessories & Fashion Items</h2>
             <div className="flex flex-wrap justify-between items-center gap-4">
               <div className="flex items-center">
                 <span className="font-medium mr-2">Per Page:</span>

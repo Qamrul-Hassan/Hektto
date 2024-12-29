@@ -24,7 +24,7 @@ const FAQPage = () => {
       <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Left Side: FAQ Section */}
         <div>
-          <h1 className="text-3xl font-semibold text-center text-[#0D0E43] mb-6 font-josefin">
+          <h1 className="text-3xl font-semibold text-center text-[#1D3178] mb-6 font-josefin">
             Frequently Asked Questions
           </h1>
           <p className="text-center text-gray-600 mb-8 font-lato">
@@ -92,7 +92,7 @@ const FAQPage = () => {
 
         {/* Right Side: Ask Questions Form */}
         <div className="bg-[#F8F8F8] p-8 rounded-lg shadow-lg">
-          <h2 className="text-2xl font-semibold text-[#0D0E43] mb-4 font-lato">Ask Questions</h2>
+          <h2 className="text-2xl font-semibold text-[#1D3178] mb-4 font-lato">Ask Questions</h2>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label htmlFor="name" className="block text-lg text-gray-700 mb-2 font-lato">Your Name</label>

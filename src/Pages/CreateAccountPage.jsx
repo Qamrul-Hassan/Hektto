@@ -97,7 +97,7 @@ const CreateAccountPage = () => {
   return (
     <PageLayout pageTitle="Create Account">
       <div className="bg-white p-8 rounded shadow-md w-full max-w-md mx-auto">
-        <h2 className="text-2xl font-semibold text-center mb-2 font-josefin">Create Account</h2>
+        <h2 className="text-2xl font-semibold text-center mb-2 font-josefin text-[#1D3178]">Create Account</h2>
         <p className="text-gray-500 text-center mb-6 font-lato">Fill the form below to create a new account.</p>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">

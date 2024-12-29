@@ -25,7 +25,7 @@ const AboutUs = () => {
           className="w-full rounded-lg shadow-lg"
         />
         <div>
-          <h1 className="text-3xl font-bold text-[#0D0E43] mb-4 font-lato">
+          <h1 className="text-3xl font-bold text-[#1D3178] mb-4 font-lato">
             Know About Our Ecommerce Business, History
           </h1>
           <p className="text-lg text-[#333333] mb-6 leading-relaxed font-lato">
@@ -46,13 +46,13 @@ const AboutUs = () => {
 
       
       <div className="container mx-auto px-6 py-12 text-center">
-        <h2 className="text-2xl font-bold text-[#0D0E43] font-josefin mb-8 ">Our Features</h2>
+        <h2 className="text-2xl font-bold text-[#1D3178] font-josefin mb-8 ">Our Features</h2>
         <Offer hideHeading /> {/* Pass a prop to hide the heading */}
       </div>
 
       
       <div className="container mx-auto px-6 py-12 text-center">
-        <h2 className="text-2xl font-bold text-[#0D0E43] mb-8 font-josefin">Our Client Say!</h2>
+        <h2 className="text-2xl font-bold text-[#1D3178] mb-8 font-josefin">Our Client Say!</h2>
         <div className="flex justify-center gap-6 mb-6">
           <img
             src={Client1}
