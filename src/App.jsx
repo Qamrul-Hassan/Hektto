@@ -15,6 +15,7 @@ import ShopWishList from "./Pages/ShopWishList"; // Wishlist page component
 import CreateAccountPage from "./Pages/CreateAccountPage"; // Create Account page component
 import ForgotPasswordPage from "./Pages/ForgotPasswordPage"; // Forgot password page
 import DataProvider from "./Components/DataContext"; // Custom data context provider
+import FAQPage from "./Pages/FAQPage"; // Import FAQPage component
 
 // Define the router configuration
 const router = createBrowserRouter([
@@ -32,6 +33,7 @@ const router = createBrowserRouter([
       { path: "cart", element: <ShopCartPage /> }, // Shopping cart page route
       { path: "shop-wishlist", element: <ShopWishList /> }, // Wishlist route
       { path: "forgot-password", element: <ForgotPasswordPage /> }, // Forgot Password route
+      { path: "faq", element: <FAQPage /> }, // FAQ page route
       { path: "*", element: <NotFound /> }, // Catch-all route for undefined paths
     ],
   },

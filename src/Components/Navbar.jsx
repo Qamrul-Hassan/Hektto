@@ -129,6 +129,16 @@ const Navbar = () => {
               Contact
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to="/faq"
+              className={({ isActive }) =>
+                `text-sm font-lato ${isActive ? "text-[#FB2E86]" : "text-[#0D0E43]"} hover:underline`
+              }
+            >
+              FAQ
+            </NavLink>
+          </li>
 
           {/* Search bar for desktop screens */}
           <li className="relative flex items-center">
@@ -213,6 +223,15 @@ const Navbar = () => {
               onClick={() => setIsMenuOpen(false)}
             >
               Contact
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/faq"
+              className="font-lato text-lg"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              FAQ
             </NavLink>
           </li>
         </ul>
