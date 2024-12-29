@@ -131,6 +131,16 @@ const Navbar = () => {
           </li>
           <li>
             <NavLink
+              to="/about-us"
+              className={({ isActive }) =>
+                `text-sm font-lato ${isActive ? "text-[#FB2E86]" : "text-[#0D0E43]"} hover:underline`
+              }
+            >
+              About Us
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
               to="/faq"
               className={({ isActive }) =>
                 `text-sm font-lato ${isActive ? "text-[#FB2E86]" : "text-[#0D0E43]"} hover:underline`
@@ -184,9 +194,7 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <div
         ref={menuRef}
-        className={`fixed top-0 left-0 w-[55%] h-[70%] rounded-r-2xl bg-[#7E33E0] shadow-lg z-50 py-8 px-6 mobile-menu transform transition-transform duration-700 ease-in-out  ${
-          isMenuOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`fixed top-0 left-0 w-[55%] h-[70%] rounded-r-2xl bg-[#7E33E0] shadow-lg z-50 py-8 px-6 mobile-menu transform transition-transform duration-700 ease-in-out  ${isMenuOpen ? "translate-x-0" : "-translate-x-full"}`}
       >
         <ul className="space-y-6 text-white">
           <li>
@@ -223,6 +231,15 @@ const Navbar = () => {
               onClick={() => setIsMenuOpen(false)}
             >
               Contact
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/about-us"
+              className="font-lato text-lg"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              About Us
             </NavLink>
           </li>
           <li>
