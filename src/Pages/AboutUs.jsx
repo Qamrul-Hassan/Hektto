@@ -12,7 +12,7 @@ const AboutUs = () => {
 
   
   const handleContactUsClick = () => {
-    navigate("/contact-us"); 
+    navigate("/contact"); 
   };
 
   return (
