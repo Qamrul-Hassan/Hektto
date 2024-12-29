@@ -16,7 +16,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-[#F1F0FF] text-gray-700 py-8">
+    <footer className="bg-[#F1F0FF] text-gray-700 py-8 px-20">
       <div className="container mx-auto px-4 lg:px-20">
         <div className="flex flex-wrap justify-between">
           {/* Sign Up Section */}
@@ -47,7 +47,7 @@ const Footer = () => {
           </div>
 
           {/* Categories Section */}
-          <div className="w-full lg:w-1/4 mb-6 lg:mb-0">
+          <div className="w-full lg:w-1/4 mb-6 lg:mb-0 px-10">
             <h2 className="font-semibold text-lg text-black mb-4">Categories</h2>
             <ul className="space-y-2 text-sm text-gray-600">
               <li>Laptops & Computers</li>
@@ -59,7 +59,7 @@ const Footer = () => {
           </div>
 
           {/* Customer Care Section */}
-          <div className="w-full lg:w-1/4 mb-6 lg:mb-0">
+          <div className="w-full lg:w-1/4 mb-6 lg:mb-0 px-10">
             <h2 className="font-semibold text-lg text-black mb-4">Customer Care</h2>
             <ul className="space-y-2 text-sm text-gray-600">
               <li>My Account</li>
@@ -71,7 +71,7 @@ const Footer = () => {
           </div>
 
           {/* Pages Section */}
-          <div className="w-full lg:w-1/4">
+          <div className="w-full lg:w-1/4 px-10">
             <h2 className="font-semibold text-lg text-black mb-4">Pages</h2>
             <ul className="space-y-2 text-sm text-gray-600">
               <li>Blog</li>
