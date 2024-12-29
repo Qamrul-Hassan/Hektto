@@ -67,7 +67,7 @@ const CartPage = () => {
     <PageLayout pageTitle="Cart">
       <div className="container mx-auto py-10 px-4 lg:px-20">
         {updatedCart.length === 0 ? (
-          <div className="text-center text-gray-500 font-semibold text-xl">
+          <div className="text-center text-gray-500 font-semibold text-xl font-lato">
             Your cart is empty.
           </div>
         ) : (
@@ -76,7 +76,7 @@ const CartPage = () => {
             <div className="lg:col-span-2">
               <table className="w-full border-collapse text-left">
                 <thead>
-                  <tr className="bg-gray-100 text-gray-700 font-semibold text-sm border-b">
+                  <tr className="bg-gray-100 text-gray-700 font-semibold text-sm border-b font-lato">
                     <th className="py-4">Product</th>
                     <th className="py-4">Price</th>
                     <th className="py-4">Quantity</th>

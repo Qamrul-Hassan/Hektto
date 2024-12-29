@@ -12,8 +12,8 @@ const ContactUs = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-5xl">
           
           <div>
-            <h2 className="text-xl lg:text-2xl font-bold text-[#0D0E43]">Information About Us</h2>
-            <p className="text-sm lg:text-base text-gray-600 mt-4">
+            <h2 className="text-xl lg:text-2xl font-bold text-[#0D0E43] font-josefin">Information About Us</h2>
+            <p className="text-sm lg:text-base text-gray-600 mt-4 font-lato">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mattis neque ultrices mattis
               aliquam, malesuada diam est.
             </p>
@@ -26,18 +26,18 @@ const ContactUs = () => {
 
           
           <div>
-            <h2 className="text-xl lg:text-2xl font-bold text-[#0D0E43]">Contact Way</h2>
+            <h2 className="text-xl lg:text-2xl font-bold text-[#0D0E43] font-josefin">Contact Way</h2>
             <ul className="mt-4 space-y-4 text-sm lg:text-base">
               <li className="flex items-center space-x-3">
-                <FaPhoneAlt className="text-blue-500" />
+                <FaPhoneAlt className="text-blue-500 font-lato" />
                 <span>Tel: 877-67-88-99</span>
               </li>
               <li className="flex items-center space-x-3">
-                <FaEnvelope className="text-purple-500" />
+                <FaEnvelope className="text-purple-500 font-lato" />
                 <span>Email: shop@store.com</span>
               </li>
               <li className="flex items-center space-x-3">
-                <FaMapMarkerAlt className="text-yellow-500" />
+                <FaMapMarkerAlt className="text-yellow-500 font-lato" />
                 <span>20 Margaret St, London, Great Britain, 3NM98-LK</span>
               </li>
             </ul>
@@ -48,13 +48,13 @@ const ContactUs = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-5xl mt-12">
           
           <div>
-            <h2 className="text-xl lg:text-2xl font-bold text-[#0D0E43]">Get In Touch</h2>
+            <h2 className="text-xl lg:text-2xl font-bold text-[#0D0E43] font-josefin">Get In Touch</h2>
             <p className="text-sm lg:text-base text-gray-600 mt-4">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mattis neque ultrices tristique amet erat vitae eget dolor vitae lobortis quis bibendum quam.
             </p>
             <form className="mt-6 space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700" htmlFor="name">
+                <label className="block text-sm font-medium text-gray-700 font-lato" htmlFor="name">
                   Your Name*
                 </label>
                 <input
@@ -65,7 +65,7 @@ const ContactUs = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700" htmlFor="email">
+                <label className="block text-sm font-medium text-gray-700 font-lato" htmlFor="email">
                   Your E-mail*
                 </label>
                 <input
@@ -76,7 +76,7 @@ const ContactUs = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700" htmlFor="subject">
+                <label className="block text-sm font-medium text-gray-700 font-lato" htmlFor="subject">
                   Subject*
                 </label>
                 <input
@@ -87,7 +87,7 @@ const ContactUs = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700" htmlFor="message">
+                <label className="block text-sm font-medium text-gray-700 font-lato" htmlFor="message">
                   Type Your Message*
                 </label>
                 <textarea
@@ -99,7 +99,7 @@ const ContactUs = () => {
               </div>
               <button
                 type="submit"
-                className="bg-pink-500 text-white py-2 px-6 rounded text-sm lg:text-base hover:bg-pink-600"
+                className="bg-pink-500 text-white py-2 px-6 rounded text-sm lg:text-base hover:bg-pink-600 font-lato"
               >
                 Send Mail
               </button>

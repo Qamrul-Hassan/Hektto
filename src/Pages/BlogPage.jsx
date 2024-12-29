@@ -74,7 +74,7 @@ const BlogPage = () => {
                   alt={`Blog Post ${index + 1}`}
                   className="w-full rounded-lg mb-4"
                 />
-                <div className="text-sm text-purple-500 items-center inline-flex">
+                <div className="text-sm text-purple-500 items-center inline-flex font-lato">
                   <FaPenNib className="mr-2 text-red-600 text-lg" />
                   <span className="text-lg font-semibold text-purple-500 mr-2 bg-pink-200">
                     Surf Auxion
@@ -94,12 +94,12 @@ const BlogPage = () => {
           <div className="col-span-1 space-y-10">
             {/* Categories */}
             <div>
-              <h4 className="font-semibold text-gray-800 mb-4">Categories</h4>
+              <h4 className="font-semibold text-gray-800 mb-4 font-lato">Categories</h4>
               <div className="grid grid-cols-2 gap-2">
                 {categories.map((category, index) => (
                   <span
                     key={index}
-                    className="text-gray-600 text-sm font-bold bg-gray-100 px-3 py-1 rounded-md flex justify-between hover:bg-pink-500 transition-colors duration-200"
+                    className="text-gray-600 text-sm font-bold bg-gray-100 px-3 py-1 rounded-md flex justify-between hover:bg-pink-500 transition-colors duration-200 font-lato"
                   >
                     {category.name} <span>({category.count})</span>
                   </span>
@@ -109,7 +109,7 @@ const BlogPage = () => {
 
             {/* Recent Posts */}
             <div>
-              <h4 className="font-semibold text-gray-800 mb-4">Recent Posts</h4>
+              <h4 className="font-semibold text-gray-800 mb-4 font-lato">Recent Posts</h4>
               {recentPosts.map((post, index) => (
                 <div key={index} className="flex items-start mb-4">
                   <img
@@ -121,7 +121,7 @@ const BlogPage = () => {
                     <span className="block text-sm text-gray-800 font-medium truncate w-64">
                       {post.title}
                     </span>
-                    <span className="text-xs text-gray-500">Aug 09 2020</span>
+                    <span className="text-xs text-gray-500 font-lato">Aug 09 2020</span>
                   </div>
                 </div>
               ))}
@@ -129,9 +129,9 @@ const BlogPage = () => {
 
             {/* Products Section */}
             <div>
-              <h4 className="font-semibold text-gray-800 mb-4">Products</h4>
+              <h4 className="font-semibold text-gray-800 mb-4 font-lato">Products</h4>
               {loading ? (
-                <p className="text-gray-500">Loading products...</p>
+                <p className="text-gray-500 font-lato">Loading products...</p>
               ) : (
                 <div className="grid grid-cols-2 gap-4">
                   {products.slice(0, 4).map((product, index) => (
@@ -141,14 +141,14 @@ const BlogPage = () => {
                         alt={product.title}
                         className="w-full h-28 object-cover mb-4 rounded-md"
                       />
-                      <h5 className="text-gray-800 font-medium text-md mb-2">
+                      <h5 className="text-gray-800 font-medium text-md mb-2 font-lato">
                         {product.title}
                       </h5>
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-gray-800 font-semibold">
                           ${product.price.toFixed(2)}
                         </span>
-                        <span className="text-sm text-red-500 line-through">
+                        <span className="text-sm text-red-500 line-through font-lato">
                           ${(product.price * 1.2).toFixed(2)}
                         </span>
                       </div>
@@ -160,7 +160,7 @@ const BlogPage = () => {
 
             {/* Follow Us */}
             <div>
-              <h4 className="font-semibold text-gray-800 mb-4">Follow Us</h4>
+              <h4 className="font-semibold text-gray-800 mb-4 font-lato">Follow Us</h4>
               <div className="flex space-x-4">
                 <FaFacebook className="text-blue-600 text-xl hover:text-blue-800 transition-colors cursor-pointer" />
                 <FaTwitter className="text-blue-400 text-xl hover:text-blue-600 transition-colors cursor-pointer" />
@@ -171,7 +171,7 @@ const BlogPage = () => {
 
             {/* Tags */}
             <div>
-              <h4 className="font-semibold text-gray-800 mb-4">Tags</h4>
+              <h4 className="font-semibold text-gray-800 mb-4 font-lato">Tags</h4>
               <div className="flex flex-wrap">
                 {tags.map((tag, index) => (
                   <span

@@ -109,7 +109,7 @@ const ProductDetails = () => {
                 {renderStars(rating)}
               </div>
 
-              <p className="text-gray-600 mt-4">{product.description}</p>
+              <p className="text-gray-600 mt-4 font-lato">{product.description}</p>
 
               <div className="flex gap-2 mt-4">
                 <span className="font-medium">Colors:</span>
@@ -184,7 +184,7 @@ const ProductDetails = () => {
 
           {/* Related Products */}
           <div className="mt-12">
-            <h3 className="text-2xl font-semibold text-gray-800">Related Products</h3>
+            <h3 className="text-2xl font-semibold text-gray-800 font-lato">Related Products</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
               {relatedProducts.map((relatedProduct) => (
                 <div

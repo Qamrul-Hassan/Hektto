@@ -9,7 +9,7 @@ const NotFound = () => {
     <PageLayout pageTitle="Page Not Found">
     <div className="min-h-screen flex flex-col items-center justify-center bg-[#F6F5FF] px-4">
       {/* 404 Heading */}
-      <h1 className="text-[80px] sm:text-[90px] font-extrabold text-pink-600 mb-2">
+      <h1 className="text-[80px] sm:text-[90px] font-extrabold text-pink-600 mb-2 font-josefin">
         404
       </h1>
 
@@ -24,7 +24,7 @@ const NotFound = () => {
 
     
       <button
-        className="px-6 py-2 bg-pink-500 text-white font-medium rounded-lg hover:bg-pink-400 transition-all mb-4"
+        className="px-6 py-2 bg-pink-500 text-white font-medium rounded-lg hover:bg-pink-400 transition-all mb-4 font-lato"
         onClick={() => navigate("/")}
       >
         Back to Home Page

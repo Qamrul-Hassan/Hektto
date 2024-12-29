@@ -97,11 +97,11 @@ const CreateAccountPage = () => {
   return (
     <PageLayout pageTitle="Create Account">
       <div className="bg-white p-8 rounded shadow-md w-full max-w-md mx-auto">
-        <h2 className="text-2xl font-semibold text-center mb-2">Create Account</h2>
-        <p className="text-gray-500 text-center mb-6">Fill the form below to create a new account.</p>
+        <h2 className="text-2xl font-semibold text-center mb-2 font-josefin">Create Account</h2>
+        <p className="text-gray-500 text-center mb-6 font-lato">Fill the form below to create a new account.</p>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-1">First Name</label>
+            <label className="block text-sm font-medium mb-1 font-lato">First Name</label>
             <input
               type="text"
               placeholder="First Name"
@@ -111,7 +111,7 @@ const CreateAccountPage = () => {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-1">Last Name</label>
+            <label className="block text-sm font-medium mb-1 font-lato">Last Name</label>
             <input
               type="text"
               placeholder="Last Name"
@@ -121,7 +121,7 @@ const CreateAccountPage = () => {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-1">User ID</label>
+            <label className="block text-sm font-medium mb-1 font-lato">User ID</label>
             <input
               type="text"
               placeholder="User ID"
@@ -131,7 +131,7 @@ const CreateAccountPage = () => {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-1">Email</label>
+            <label className="block text-sm font-medium mb-1 font-lato">Email</label>
             <input
               type="email"
               placeholder="Email Address"
@@ -142,7 +142,7 @@ const CreateAccountPage = () => {
             {emailError && <p className="text-red-500 text-sm">{emailError}</p>}
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-1">Password</label>
+            <label className="block text-sm font-medium mb-1 font-lato">Password</label>
             <input
               type="password"
               placeholder="Password"
@@ -153,7 +153,7 @@ const CreateAccountPage = () => {
             {passwordError && <p className="text-red-500 text-sm">{passwordError}</p>}
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-1">Confirm Password</label>
+            <label className="block text-sm font-medium mb-1 font-lato">Confirm Password</label>
             <input
               type="password"
               placeholder="Confirm Password"
@@ -165,13 +165,13 @@ const CreateAccountPage = () => {
           {error && <p className="text-red-500 text-sm">{error}</p>}
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 mt-4"
+            className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 mt-4 font-lato"
           >
             Create Account
           </button>
         </form>
         <div className="text-center mt-4">
-          <Link to="/login" className="text-blue-500 text-sm">Already have an account? Login</Link>
+          <Link to="/login" className="text-blue-500 text-sm font-lato">Already have an account? Login</Link>
         </div>
       </div>
     </PageLayout>

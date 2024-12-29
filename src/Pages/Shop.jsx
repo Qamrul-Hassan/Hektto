@@ -95,7 +95,7 @@ const Shop = () => {
 
         <div className="lg:w-3/4">
           <div className="bg-white p-4 rounded-lg shadow-md mb-6">
-            <h2 className="text-lg font-bold mb-4">Ecommerce Accessories & Fashion Items</h2>
+            <h2 className="text-lg font-bold mb-4 font-lato">Ecommerce Accessories & Fashion Items</h2>
             <div className="flex flex-wrap justify-between items-center gap-4">
               <div className="flex items-center">
                 <span className="font-medium mr-2">Per Page:</span>
@@ -113,7 +113,7 @@ const Shop = () => {
                 </select>
               </div>
               <div className="flex items-center">
-                <span className="font-medium mr-2">Sort By:</span>
+                <span className="font-medium mr-2 font-lato">Sort By:</span>
                 <select
                   className="border rounded px-3 py-1 text-sm"
                   value={sortOption}
@@ -165,13 +165,13 @@ const Shop = () => {
 
                 <div className={`${viewType === "list" ? "flex-grow p-4 flex flex-col" : "p-4"}`}>
                   <div className="flex items-center justify-start gap-5 mb-2">
-                    <h3 className="text-lg font-bold text-gray-800">{product.title}</h3>
+                    <h3 className="text-lg font-bold text-gray-800 font-lato">{product.title}</h3>
                   </div>
 
                   <div className="flex items-center justify-start gap-4 mb-2">
-                    <span className="text-lg font-semibold text-blue-500">${product.price}</span>
+                    <span className="text-lg font-semibold text-blue-500 font-lato">${product.price}</span>
                     {product.discount && (
-                      <span className="text-sm line-through text-red-500 ml-2">
+                      <span className="text-sm line-through text-red-500 ml-2 font-lato">
                         ${product.price + product.discount}
                       </span>
                     )}
