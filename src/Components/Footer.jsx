@@ -31,7 +31,7 @@ const Footer = () => {
                 className="w-[60%] px-4 py-2 rounded-md text-gray-600 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500"
               />
               <button
-                className="w-[30%] mt-2 lg:mt-0 bg-pink-500 hover:bg-pink-600 text-white font-normal py-2 px-4 rounded-md ml-2 transition-all"
+                className="w-[30%] mt-2 lg:mt-0 bg-pink-500 hover:bg-pink-600 text-white font-normal py-2 px-2 rounded-md ml-1 transition-all"
                 onClick={handleSignup}
               >
                 Sign Up
