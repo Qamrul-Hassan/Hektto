@@ -19,18 +19,19 @@ const Footer = () => {
     <footer className="bg-[#F1F0FF] text-gray-700 py-8">
       <div className="container mx-auto px-4 lg:px-20">
         <div className="flex flex-wrap justify-between">
+          {/* Sign Up Section */}
           <div className="w-full lg:w-1/4 mb-6 lg:mb-0">
             <h1 className="font-bold text-xl text-black">Hekto</h1>
-            <div className="mt-4">
+            <div className="mt-4 flex items-center">
               <input
                 type="email"
                 placeholder="Enter Email Address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-[60%] px-2 py-1 rounded-md text-gray-500 border border-gray-300 focus:outline-none"
+                className="w-[60%] px-4 py-2 rounded-md text-gray-600 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500"
               />
               <button
-                className="w-[25%] mt-2 bg-pink-500 hover:bg-pink-600 text-white font-small py-1 px-2 rounded-md ml-2"
+                className="w-[30%] mt-2 lg:mt-0 bg-pink-500 hover:bg-pink-600 text-white font-medium py-2 px-4 rounded-md ml-2 transition-all"
                 onClick={handleSignup}
               >
                 Sign Up
@@ -45,9 +46,10 @@ const Footer = () => {
             </div>
           </div>
 
+          {/* Categories Section */}
           <div className="w-full lg:w-1/4 mb-6 lg:mb-0">
-            <h2 className="font-bold text-lg text-black mb-4">Categories</h2>
-            <ul className="space-y-2">
+            <h2 className="font-semibold text-lg text-black mb-4">Categories</h2>
+            <ul className="space-y-2 text-sm text-gray-600">
               <li>Laptops & Computers</li>
               <li>Cameras & Photography</li>
               <li>Smart Phones & Tablets</li>
@@ -56,9 +58,10 @@ const Footer = () => {
             </ul>
           </div>
 
+          {/* Customer Care Section */}
           <div className="w-full lg:w-1/4 mb-6 lg:mb-0">
-            <h2 className="font-bold text-lg text-black mb-4">Customer Care</h2>
-            <ul className="space-y-2">
+            <h2 className="font-semibold text-lg text-black mb-4">Customer Care</h2>
+            <ul className="space-y-2 text-sm text-gray-600">
               <li>My Account</li>
               <li>Discount</li>
               <li>Returns</li>
@@ -67,9 +70,10 @@ const Footer = () => {
             </ul>
           </div>
 
+          {/* Pages Section */}
           <div className="w-full lg:w-1/4">
-            <h2 className="font-bold text-lg text-black mb-4">Pages</h2>
-            <ul className="space-y-2">
+            <h2 className="font-semibold text-lg text-black mb-4">Pages</h2>
+            <ul className="space-y-2 text-sm text-gray-600">
               <li>Blog</li>
               <li>Browse the Shop</li>
               <li>Category</li>
@@ -80,6 +84,7 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Bottom Section */}
         <div className="mt-8 flex justify-between items-center text-sm text-gray-500">
           <p>©Qamrul Hassan - All Rights Reserved</p>
           <div className="flex space-x-4">
