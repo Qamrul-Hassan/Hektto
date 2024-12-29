@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react'; 
-
+import { useContext } from "react"; 
 import PropTypes from "prop-types";
-
+import { DataContext } from "../Components/DataContext"; // Adjust the import path as per your project structure
 import Sale from "../assets/Image/Sale.png";
 
 const ProductCard = ({ product }) => (
@@ -45,34 +44,22 @@ ProductCard.propTypes = {
 };
 
 const LatestProduct = () => {
-  const [products, setProducts] = useState([]);
+  const { products, loadingProducts } = useContext(DataContext); // Use DataContext
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch("https://fakestoreapi.com/products?limit=8");
-        const data = await response.json();
+  if (loadingProducts) {
+    return (
+      <div className="text-center py-12">
+        <p className="text-lg text-gray-500">Loading latest products...</p>
+      </div>
+    );
+  }
 
-        const transformedData = data.map((product) => ({
-          id: product.id,
-          title: product.title,
-          price: product.price,
-          image: product.image,
-          category: product.category,
-        }));
-
-        setProducts(transformedData);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-
-    fetchProducts();
-  }, []);
+  // Limit to 8 products
+  const limitedProducts = products.slice(0, 8);
 
   return (
     <section className="py-12 px-4 md:px-8 lg:px-16 xl:px-20">
-      
+      {/* Heading */}
       <div className="text-center mb-8">
         <h2 className="mb-4 font-josefin text-2xl md:text-3xl font-bold text-gray-800">
           Latest Products
@@ -85,10 +72,10 @@ const LatestProduct = () => {
         </div>
       </div>
 
-      
+      {/* Products Grid */}
       <div>
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {products.map((product) => (
+          {limitedProducts.map((product) => (
             <div key={product.id}>
               <ProductCard product={product} />
             </div>

@@ -1,6 +1,14 @@
+import React from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import discountItemImage from "../assets/Image/DiscountItem.png";
 
 const DiscountItem = () => {
+  const navigate = useNavigate(); // Initialize navigate function
+
+  const handleShopNowClick = () => {
+    navigate("/shop"); // Redirect to the shop page
+  };
+
   return (
     <div className="relative w-full bg-[#F1F0FF] py-8 sm:py-12 lg:py-16 flex justify-center items-center">
       <div className="relative w-[90%] max-w-[1200px] bg-white border-[2px] border-[#E0E0E0] rounded-lg">
@@ -41,7 +49,10 @@ const DiscountItem = () => {
               <li>✔ Material expose like metals</li>
             </ul>
 
-            <button className="px-6 sm:px-8 py-2 sm:py-3 bg-[#FB2E86] text-white rounded-md hover:bg-[#D02175]">
+            <button
+              onClick={handleShopNowClick} // Attach click handler
+              className="px-6 sm:px-8 py-2 sm:py-3 bg-[#FB2E86] text-white rounded-md hover:bg-[#D02175]"
+            >
               Shop Now
             </button>
           </div>
