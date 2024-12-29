@@ -20,7 +20,7 @@ const Shop = () => {
   const [sortOption, setSortOption] = useState("price-low-high");
   const [viewType, setViewType] = useState("grid");
   const [loading, setLoading] = useState(true);
-  const [likedProducts, setLikedProducts] = useState([]); // For tracking liked products
+  const [ setLikedProducts] = useState([]); // For tracking liked products
   const [zoomedProduct, setZoomedProduct] = useState(null); // For tracking zoomed product
 
   useEffect(() => {
