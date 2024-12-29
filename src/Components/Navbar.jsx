@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { FaBars, FaTimes, FaSearch } from "react-icons/fa";
+import { FaBars, FaSearch } from "react-icons/fa";
 import Hekto from "../assets/Image/Hekto.png";
 
 const Navbar = () => {
@@ -8,6 +8,7 @@ const Navbar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const menuRef = useRef(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -29,7 +30,7 @@ const Navbar = () => {
     setSearchTerm(value);
 
     if (value.trim() === "") {
-      setFilteredProducts(products);  
+      setFilteredProducts(products);
     } else {
       const results = products.filter((product) =>
         product.title.toLowerCase().includes(value.toLowerCase())
@@ -38,15 +39,18 @@ const Navbar = () => {
     }
   };
 
-  // Close mobile menu when clicked outside
+  // Close the menu when clicking outside
   useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (!e.target.closest('.mobile-menu') && !e.target.closest('.md:hidden')) {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
         setIsMenuOpen(false);
       }
     };
-    document.addEventListener('click', handleClickOutside);
-    return () => document.removeEventListener('click', handleClickOutside);
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
 
   return (
@@ -80,7 +84,7 @@ const Navbar = () => {
           className="text-2xl text-[#0D0E43] md:hidden"
           aria-label="Toggle Menu"
         >
-          {isMenuOpen ? <FaTimes /> : <FaBars />}
+          <FaBars />
         </button>
 
         {/* Desktop Navbar */}
@@ -94,22 +98,6 @@ const Navbar = () => {
             >
               Home
             </NavLink>
-          </li>
-          <li>
-            <Link
-              to="#"
-              className="text-[#0D0E43] font-lato text-sm hover:underline"
-            >
-              Pages
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="#"
-              className="text-[#0D0E43] font-lato text-sm hover:underline"
-            >
-              Products
-            </Link>
           </li>
           <li>
             <NavLink
@@ -185,6 +173,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
+        ref={menuRef}
         className={`fixed top-0 left-0 w-[55%] h-[70%] rounded-r-2xl bg-[#7E33E0] shadow-lg z-50 py-8 px-6 mobile-menu transform transition-transform duration-700 ease-in-out  ${
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
@@ -198,24 +187,6 @@ const Navbar = () => {
             >
               Home
             </NavLink>
-          </li>
-          <li>
-            <Link
-              to="#"
-              className="font-lato text-lg"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Pages
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="#"
-              className="font-lato text-lg"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Products
-            </Link>
           </li>
           <li>
             <NavLink

@@ -4,9 +4,8 @@ import {
   FaHeart,
   FaShoppingCart,
   FaBars,
-  FaTimes,
 } from "react-icons/fa";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { DataContext } from "../Components/DataContext";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
@@ -14,6 +13,7 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 const TopBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false); // State for mobile menu
   const [user, setUser] = useState(null); // State for logged-in user
+  const menuRef = useRef(null); // Ref for menu
 
   const { cart, wishlist } = useContext(DataContext);
 
@@ -35,6 +35,20 @@ const TopBar = () => {
       .catch((error) => console.error("Error logging out:", error));
   };
 
+  // Close the menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className="bg-purple-600 h-16 flex items-center justify-between px-4 text-white relative">
       {/* Left side content (Email, Phone) */}
@@ -55,7 +69,7 @@ const TopBar = () => {
         className="sm:hidden focus:outline-none text-lg"
         aria-label="Toggle Menu"
       >
-        {isMenuOpen ? <FaTimes /> : <FaBars />}
+        <FaBars />
       </button>
 
       {/* Center content for larger screens */}
@@ -118,16 +132,11 @@ const TopBar = () => {
 
       {/* Mobile Slide-in Menu */}
       <div
+        ref={menuRef}
         className={`fixed top-0 left-0 w-[35%] h-[50%] rounded-r-xl bg-purple-600 text-white p-6 sm:hidden z-20 transform transition-transform duration-700 ease-in-out ${
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <button
-          onClick={() => setIsMenuOpen(false)}
-          className="text-white text-2xl absolute top-4 right-4 focus:outline-none"
-        >
-          <FaTimes />
-        </button>
         <ul className="space-y-6 text-sm mt-12">
           <li>
             <select
