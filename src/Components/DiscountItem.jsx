@@ -1,4 +1,3 @@
-
 import discountItemImage from "../assets/Image/DiscountItem.png";
 
 const DiscountItem = () => {
@@ -10,9 +9,15 @@ const DiscountItem = () => {
             Discount Item
           </h2>
           <div className="flex flex-wrap justify-center space-x-4">
-            <button className="text-[#FB2E86] font-medium underline">Wood Chair</button>
-            <button className="text-[#FB2E86] font-medium underline">Plastic Chair</button>
-            <button className="text-[#FB2E86] font-medium underline">Sofa Collection</button>
+            <button className="text-[#FB2E86] font-medium underline">
+              Wood Chair
+            </button>
+            <button className="text-[#FB2E86] font-medium underline">
+              Plastic Chair
+            </button>
+            <button className="text-[#FB2E86] font-medium underline">
+              Sofa Collection
+            </button>
           </div>
         </div>
 
@@ -43,16 +48,10 @@ const DiscountItem = () => {
 
           {/* Image Section */}
           <div className="flex-1 flex justify-center items-center relative p-4 sm:p-8">
-            <div
-              className="absolute rounded-full bg-[#F1F0FF] 
-                w-[150px] h-[150px] -top-8 -right-6
-                sm:w-[200px] sm:h-[200px] sm:-top-10 sm:-right-8
-                lg:w-[300px] lg:h-[300px] lg:-top-16 lg:-right-10"
-            ></div>
             <img
               src={discountItemImage}
               alt="Eams Sofa"
-              className="w-[70%] sm:w-[80%] max-w-[300px] sm:max-w-[400px] relative z-10"
+              className="w-[100%] sm:w-[90%] md:w-[80%] max-w-[500px] relative z-10"
             />
           </div>
         </div>
