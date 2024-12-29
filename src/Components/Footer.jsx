@@ -27,7 +27,7 @@ const Footer = () => {
                 placeholder="Enter Email Address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-[70%] px-2 py-1 rounded-md text-gray-500 border border-gray-300 focus:outline-none"
+                className="w-[60%] px-2 py-1 rounded-md text-gray-500 border border-gray-300 focus:outline-none"
               />
               <button
                 className="w-[25%] mt-2 bg-pink-500 hover:bg-pink-600 text-white font-small py-1 px-2 rounded-md ml-2"
@@ -40,7 +40,7 @@ const Footer = () => {
             <div className="mt-4">
               <p className="font-medium text-gray-600">Contact Info</p>
               <p className="text-sm text-gray-500 mt-1">
-                17 Princess Road, London, Greater London NW1 8JR, UK
+                17 Princess Road, London, UK
               </p>
             </div>
           </div>
