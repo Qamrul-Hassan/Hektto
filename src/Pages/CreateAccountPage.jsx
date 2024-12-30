@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, signInWithPopup, GoogleAuthProvider, OAuthProvider } from "firebase/auth";
+import { FcGoogle } from "react-icons/fc"; // Google icon from react-icons
+import { IoLogoWindows } from "react-icons/io"; // Microsoft icon from react-icons
 import PageLayout from "../Components/PageLayout";
 
 const CreateAccountPage = () => {
@@ -94,6 +96,40 @@ const CreateAccountPage = () => {
     }
   };
 
+  // Google Sign-In
+  const handleGoogleSignUp = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+
+      // Send email verification
+      await sendEmailVerification(user);
+      alert("Account created successfully via Google! Please check your email for verification.");
+
+      navigate("/login");
+    } catch (error) {
+      setError("Error with Google sign-up: " + error.message);
+    }
+  };
+
+  // Microsoft (Hotmail) Sign-In
+  const handleMicrosoftSignUp = async () => {
+    const provider = new OAuthProvider('microsoft.com'); // Use Microsoft provider
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+
+      // Send email verification
+      await sendEmailVerification(user);
+      alert("Account created successfully via Microsoft! Please check your email for verification.");
+
+      navigate("/login");
+    } catch (error) {
+      setError("Error with Microsoft sign-up: " + error.message);
+    }
+  };
+
   return (
     <PageLayout pageTitle="Create Account">
       <div className="bg-white p-8 rounded shadow-md w-full max-w-md mx-auto">
@@ -170,6 +206,25 @@ const CreateAccountPage = () => {
             Create Account
           </button>
         </form>
+
+        {/* Sign-in buttons */}
+        <div className="flex gap-4 mt-6 justify-center">
+          <button
+            onClick={handleGoogleSignUp}
+            className="w-full flex items-center justify-center bg-white border border-gray-300 py-2 rounded text-sm text-gray-700 shadow-md hover:bg-gray-50"
+          >
+            <FcGoogle className="mr-2 text-2xl" />
+            Sign up with Google
+          </button>
+          <button
+            onClick={handleMicrosoftSignUp}
+            className="w-full flex items-center justify-center bg-white border border-gray-300 py-2 rounded text-sm text-gray-700 shadow-md hover:bg-gray-50"
+          >
+            <IoLogoWindows className="mr-2 text-2xl" />
+            Sign up with Microsoft
+          </button>
+        </div>
+
         <div className="text-center mt-4">
           <Link to="/login" className="text-blue-500 text-sm font-lato">Already have an account? Login</Link>
         </div>
