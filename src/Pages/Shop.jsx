@@ -207,10 +207,10 @@ const Shop = () => {
               return (
                 <div
                   key={productId}
-                  className={`bg-${alert.type === "cart" ? "pink" : "pink"}-500 text-white p-4 rounded-md shadow-lg transition-opacity duration-500 opacity-100`}
+                  className={`bg-${alert.type === "cart" ? "pink" : "pink"}-500 text-white p-4 rounded-md shadow-lg transition-opacity duration-1000 opacity-100`}
                   style={{
-                    transition: "opacity 5s ease-out",
                     opacity: alert ? 1 : 0,
+                    transition: "opacity 3s ease-out", // Fade out effect after 3 seconds
                   }}
                 >
                   {alert.msg}
