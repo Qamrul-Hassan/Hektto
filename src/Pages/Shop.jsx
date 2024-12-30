@@ -75,7 +75,7 @@ const Shop = () => {
         delete updatedMessages[product.id];
         return updatedMessages;
       });
-    }, 3000); // Hide message after 3 seconds
+    }, 3000);
   };
 
   const handleToggleWishlist = (product) => {
@@ -91,7 +91,7 @@ const Shop = () => {
         delete updatedMessages[product.id];
         return updatedMessages;
       });
-    }, 3000); // Hide message after 3 seconds
+    }, 3000);
   };
 
   const totalPages = Math.ceil(filteredAndSortedProducts().length / productsPerPage);
