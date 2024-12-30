@@ -1,29 +1,21 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FaBars, FaSearch } from "react-icons/fa";
 import Hekto from "../assets/Image/Hekto.png";
+import { DataContext } from "../Components/DataContext"; // Adjust the path
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const menuRef = useRef(null);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch("https://fakestoreapi.com/products");
-        const data = await response.json();
-        setProducts(data);
-        setFilteredProducts(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+  // Get products from DataContext
+  const { products } = useContext(DataContext);
 
-    fetchProducts();
-  }, []);
+  useEffect(() => {
+    setFilteredProducts(products); // Set initial filtered products as the full product list
+  }, [products]);
 
   const handleSearchChange = (e) => {
     const value = e.target.value;

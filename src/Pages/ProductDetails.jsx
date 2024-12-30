@@ -13,6 +13,9 @@ const ProductDetails = () => {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [activeTab, setActiveTab] = useState("description");
   const [isZoomed, setIsZoomed] = useState(false); // State for zoom effect
+  const [cartMessage, setCartMessage] = useState(""); // State for cart message
+  const [wishlistMessage, setWishlistMessage] = useState(""); // State for wishlist message
+  const [isInCart, setIsInCart] = useState(false); // Track if item is added to cart
 
   useEffect(() => {
     const fetchProduct = () => {
@@ -56,6 +59,23 @@ const ProductDetails = () => {
   };
 
   const isLiked = wishlist.includes(product?.id); // Check if product is in wishlist
+
+  const handleAddToCart = () => {
+    addToCart(product);
+    setIsInCart(true); // Set to true when the product is added to the cart
+    setCartMessage("Cart: Item added"); // Show cart message
+    setTimeout(() => setCartMessage(""), 2000); // Clear message after 2 seconds
+  };
+
+  const handleToggleWishlist = () => {
+    toggleWishlist(product.id);
+    if (isLiked) {
+      setWishlistMessage("Item removed from wishlist");
+    } else {
+      setWishlistMessage("Item added to wishlist");
+    }
+    setTimeout(() => setWishlistMessage(""), 2000); // Clear message after 2 seconds
+  };
 
   return (
     <PageLayout pageTitle="Product Details">
@@ -122,18 +142,22 @@ const ProductDetails = () => {
 
               <div className="flex gap-3 items-center mt-6">
                 <button
-                  className="text-white bg-red-600 p-2 rounded-full cursor-pointer"
-                  onClick={() => addToCart(product)} // Add product to cart
+                  className={`p-2 rounded-full cursor-pointer ${
+                    isInCart
+                      ? "bg-pink-600 text-white"
+                      : "bg-white text-pink-600 border border-pink-600"
+                  }`}
+                  onClick={handleAddToCart} // Add product to cart
                 >
                   <FaCartPlus />
                 </button>
                 <button
                   className={`p-2 rounded-full cursor-pointer border-2 ${
                     isLiked
-                      ? "bg-red-600 border-red-600 text-white"
-                      : "border-red-600 text-red-600"
+                      ? "bg-pink-500 border-pink-500 text-white"
+                      : "border-pink-500 text-pink-500"
                   }`}
-                  onClick={() => toggleWishlist(product.id)} // Toggle wishlist state
+                  onClick={handleToggleWishlist} // Toggle wishlist state
                 >
                   <FaHeart />
                 </button>
@@ -144,6 +168,10 @@ const ProductDetails = () => {
                   <FaSearchPlus />
                 </button>
               </div>
+
+              {/* Cart and Wishlist Message */}
+              {cartMessage && <p className="text-pink-500 mt-2">{cartMessage}</p>}
+              {wishlistMessage && <p className="text-pink-500 mt-2">{wishlistMessage}</p>}
             </div>
           </div>
 
