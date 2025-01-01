@@ -102,7 +102,7 @@ const Dashboard = () => {
     <PageLayout pageTitle="Dashboard">
       <div className="flex h-screen">
         {/* Sidebar */}
-        <nav className="w-64 bg-gray-800 text-white p-4">
+        <nav className="w-64 bg-[#5f5f6b] text-black p-4">
           <div className="mb-8">
             <h2 className="text-2xl font-bold">Dashboard</h2>
           </div>
