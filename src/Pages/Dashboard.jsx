@@ -102,19 +102,19 @@ const Dashboard = () => {
     <PageLayout pageTitle="Dashboard">
       <div className="flex h-screen">
         {/* Sidebar */}
-        <nav className="w-64 bg-[#5f5f6b] text-black p-4">
+        <nav className="w-64 bg-[#5f5f6b] text-white p-4">
           <div className="mb-8">
             <h2 className="text-2xl font-bold">Dashboard</h2>
           </div>
           <ul>
             <li className="mb-4">
-              <Link to="/Shop" className="text-gray-300 hover:text-white">Products</Link>
+              <Link to="/Shop" className="text-white hover:text-gray-300">Products</Link>
             </li>
             <li className="mb-4">
-              <Link to="/cart" className="text-gray-300 hover:text-white">Orders</Link>
+              <Link to="/cart" className="text-white hover:text-gray-300">Orders</Link>
             </li>
             <li className="mb-4">
-              <Link to="/customers" className="text-gray-300 hover:text-white">Customers</Link>
+              <Link to="/customers" className="text-white hover:text-gray-300">Customers</Link>
             </li>
           </ul>
           <button
