@@ -4,6 +4,7 @@ import {
   FaHeart,
   FaShoppingCart,
   FaBars,
+  FaUserTie, // Professional icon
 } from "react-icons/fa";
 import { useState, useContext, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
@@ -128,6 +129,14 @@ const TopBar = () => {
             )}
           </div>
         </Link>
+
+        {/* Professional Icon */}
+        <Link to="/dashboard">
+          <FaUserTie
+            className="text-2xl cursor-pointer"
+            title="Dashboard"
+          />
+        </Link>
       </div>
 
       {/* Mobile Slide-in Menu */}
@@ -180,6 +189,11 @@ const TopBar = () => {
           <li>
             <Link to="/cart" className="block">
               Cart ({totalCartItems})
+            </Link>
+          </li>
+          <li>
+            <Link to="/dashboard" className="block">
+              Dashboard
             </Link>
           </li>
         </ul>
