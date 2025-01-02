@@ -225,8 +225,13 @@ const CreateAccountPage = () => {
           </button>
         </div>
 
-        <div className="text-center mt-4">
-          <Link to="/login" className="text-blue-500 text-sm font-lato">Already have an account? Login</Link>
+        <div className="text-center mt-6">
+          <p className="text-sm">
+            Already have an account?{" "}
+            <Link to="/login" className="text-blue-500 hover:underline">
+              Log in
+            </Link>
+          </p>
         </div>
       </div>
     </PageLayout>
