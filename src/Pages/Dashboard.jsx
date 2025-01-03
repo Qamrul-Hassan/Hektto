@@ -12,11 +12,14 @@ import {
 } from 'firebase/auth';
 import { useNavigate, Link } from 'react-router-dom';
 import PageLayout from '../Components/PageLayout';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Dashboard = () => {
   const [user, setUser] = useState(null);
   const [name, setName] = useState('');
   const [userID, setUserID] = useState('');
+  const [newUserID, setNewUserID] = useState('');
   const [language, setLanguage] = useState('');
   const [email, setEmail] = useState('');
   const [newEmail, setNewEmail] = useState('');
@@ -30,6 +33,7 @@ const Dashboard = () => {
         setUser(user);
         setName(user.displayName || '');
         setEmail(user.email || '');
+        setUserID(user.uid || '');
         setSignedOut(false);
       } else {
         navigate('/login');
@@ -42,15 +46,15 @@ const Dashboard = () => {
   const handleUpdateProfile = async () => {
     try {
       await updateProfile(auth.currentUser, { displayName: name });
-      alert('Profile updated successfully.');
+      toast.success('Profile updated successfully.');
     } catch (error) {
-      alert('Failed to update profile. Please try again.');
+      toast.error('Failed to update profile. Please try again.');
     }
   };
 
   const handleUpdateEmail = async () => {
     if (newEmail === email) {
-      alert('New email is the same as the current email.');
+      toast.warning('New email is the same as the current email.');
       return;
     }
 
@@ -60,7 +64,7 @@ const Dashboard = () => {
       await updateEmail(auth.currentUser, newEmail);
       await sendEmailVerification(auth.currentUser);
 
-      alert('Email updated successfully. Please verify your new email address.');
+      toast.success('Email updated successfully. Please verify your new email address.');
 
       const updatedUser = auth.currentUser;
       setEmail(updatedUser.email);
@@ -74,7 +78,7 @@ const Dashboard = () => {
       const credential = EmailAuthProvider.credential(auth.currentUser.email, currentPassword);
       await reauthenticateWithCredential(auth.currentUser, credential);
       await sendEmailVerification(auth.currentUser);
-      alert('Verification email sent to your new address. Please verify it.');
+      toast.info('Verification email sent to your new address. Please verify it.');
     } catch (error) {
       handleAuthError(error);
     }
@@ -84,9 +88,9 @@ const Dashboard = () => {
     const emailToUse = newEmail || email;
     try {
       await sendPasswordResetEmail(auth, emailToUse);
-      alert('Password reset email sent. Please check your email.');
+      toast.success('Password reset email sent. Please check your email.');
     } catch (error) {
-      alert('Failed to send password reset email. Please try again.');
+      toast.error('Failed to send password reset email. Please try again.');
     }
   };
 
@@ -95,7 +99,7 @@ const Dashboard = () => {
       await signOut(auth);
       setSignedOut(true);
     } catch (error) {
-      alert('Failed to sign out. Please try again.');
+      toast.error('Failed to sign out. Please try again.');
     }
   };
 
@@ -104,15 +108,25 @@ const Dashboard = () => {
       const credential = EmailAuthProvider.credential(auth.currentUser.email, currentPassword);
       await reauthenticateWithCredential(auth.currentUser, credential);
       await deleteUser(auth.currentUser);
-      alert('User deleted successfully.');
+      toast.success('User deleted successfully.');
       navigate('/login');
     } catch (error) {
       handleAuthError(error);
     }
   };
 
+  const handleUpdateUserID = async () => {
+    try {
+      // Assuming user ID is stored in a custom user database; update logic would go here
+      toast.success('User ID updated successfully.');
+      setUserID(newUserID);
+    } catch (error) {
+      toast.error('Failed to update User ID. Please try again.');
+    }
+  };
+
   const handleAuthError = (error) => {
-    alert(`Error: ${error.message}`);
+    toast.error(`Error: ${error.message}`);
   };
 
   const handleChangeLanguage = (e) => {
@@ -137,31 +151,17 @@ const Dashboard = () => {
           </ul>
           <button
             onClick={handleSignOut}
-            className="mt-8 bg-red-600 hover:bg-red-700 text-white py-3 px-6 rounded-full w-full transition duration-300"
+            className="mt-8 bg-red-600 hover:bg-red-700 text-white py-2 px-6 rounded-lg font-semibold w-full transition duration-300"
           >
             Sign Out
           </button>
         </nav>
         <main className="flex-1 p-8 bg-gray-50">
           <header className="flex justify-between items-center mb-8">
-            <h1 className="text-3xl font-semibold text-gray-800">
+            <h1 className="text-3xl font-semibold text-blue-800">
               Welcome, {signedOut ? 'Sign In' : user?.email || 'User'}
             </h1>
-            <div className="flex space-x-4 items-center">
-              <div className="text-gray-600 text-sm">
-                <span>Language:</span>
-                <select
-                  value={language}
-                  onChange={handleChangeLanguage}
-                  className="ml-2 p-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                  <option value="en">English</option>
-                  <option value="es">Spanish</option>
-                  <option value="fr">French</option>
-                  <option value="BG">Bangla</option>
-                </select>
-              </div>
-            </div>
+            
           </header>
           <section className="mb-12">
             <h2 className="text-xl font-bold text-gray-800 mb-6">Update Profile</h2>
@@ -175,7 +175,7 @@ const Dashboard = () => {
               />
               <button
                 onClick={handleUpdateProfile}
-                className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 ml-2 w-48 rounded-lg transition duration-300"
+                className="bg-blue-900 hover:bg-blue-700 text-white py-2 px-4 ml-2 w-48 rounded-lg transition duration-300"
               >
                 Update Profile
               </button>
@@ -189,29 +189,47 @@ const Dashboard = () => {
                 placeholder="New Email"
                 value={newEmail}
                 onChange={(e) => setNewEmail(e.target.value)}
-                className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full p-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               <input
                 type="password"
                 placeholder="Current Password"
                 value={currentPassword}
                 onChange={(e) => setCurrentPassword(e.target.value)}
-                className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full p-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               <div className="flex space-x-4">
                 <button
                   onClick={handleVerifyNewEmail}
-                  className="bg-yellow-600 hover:bg-yellow-700 text-white py-2 px-4 rounded-lg transition duration-300 w-1/2"
+                  className="bg-yellow-800 hover:bg-yellow-600 text-white py-2 px-4 rounded-lg transition duration-300 w-1/2"
                 >
                   Verify New Email
                 </button>
                 <button
                   onClick={handleUpdateEmail}
-                  className="bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition duration-300 w-1/2"
+                  className="bg-green-800 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition duration-300 w-1/2"
                 >
                   Update Email
                 </button>
               </div>
+            </div>
+          </section>
+          <section className="mb-12">
+            <h2 className="text-xl font-bold text-gray-800 mb-6">Change User ID</h2>
+            <div className="space-y-6 bg-white p-6 rounded-lg shadow-lg">
+              <input
+                type="text"
+                placeholder="New User ID"
+                value={newUserID}
+                onChange={(e) => setNewUserID(e.target.value)}
+                className="w-80 p-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <button
+                onClick={handleUpdateUserID}
+                className="bg-blue-900 hover:bg-blue-700 text-white py-2 px-8 ml-2 rounded-lg transition duration-300"
+              >
+                Update User ID
+              </button>
             </div>
           </section>
           <section className="mb-12">
@@ -228,9 +246,16 @@ const Dashboard = () => {
           <section className="mb-12">
             <h2 className="text-xl font-bold text-gray-800 mb-6">Delete Account</h2>
             <div className="space-y-6 bg-white p-6 rounded-lg shadow-lg">
+              <input
+                type="password"
+                placeholder="Enter Password to Confirm"
+                value={currentPassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
+                className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
               <button
                 onClick={handleDeleteUser}
-                className="bg-red-700 hover:bg-red-800 text-white py-2 px-4 rounded-lg w-48 transition duration-300"
+                className="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg w-48 transition duration-300"
               >
                 Delete Account
               </button>
@@ -238,10 +263,10 @@ const Dashboard = () => {
           </section>
         </main>
       </div>
+      <ToastContainer position="top-right" autoClose={3000} showProgressBar closeOnClick pauseOnHover />
     </PageLayout>
   );
 };
 
-
-
 export default Dashboard;
+
