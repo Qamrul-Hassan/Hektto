@@ -46,7 +46,6 @@ const ContactUs = () => {
 
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-5xl mt-12">
-          
           <div>
             <h2 className="text-xl lg:text-2xl font-bold text-[#1D3178] font-josefin">Get In Touch</h2>
             <p className="text-sm lg:text-base text-gray-600 mt-4">

@@ -1,10 +1,10 @@
-// src/Pages/Customers.jsx
+
 import React from 'react';
 import PageLayout from '../Components/PageLayout';
 import customer1 from '../assets/Image/Client-1.png';
 import customer2 from '../assets/Image/Client-2.png';
 import customer3 from '../assets/Image/Client-1.png';
-import { FaStar } from 'react-icons/fa'; // Importing Font Awesome star icon
+import { FaStar } from 'react-icons/fa';
 
 const Customers = () => {
   const reviews = [
@@ -34,7 +34,7 @@ const Customers = () => {
       stars.push(
         <FaStar
           key={i}
-          className={`inline-block ${i <= rating ? 'text-yellow-500' : 'text-gray-300'}`} // Filled stars are yellow, empty stars are gray
+          className={`inline-block ${i <= rating ? 'text-yellow-500' : 'text-gray-300'}`}
         />
       );
     }

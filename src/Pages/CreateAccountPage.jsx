@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, signInWithPopup, GoogleAuthProvider, OAuthProvider } from "firebase/auth";
-import { FcGoogle } from "react-icons/fc"; // Google icon from react-icons
-import { IoLogoWindows } from "react-icons/io"; // Microsoft icon from react-icons
+import { FcGoogle } from "react-icons/fc";
+import { IoLogoWindows } from "react-icons/io";
 import PageLayout from "../Components/PageLayout";
 
 const CreateAccountPage = () => {
@@ -11,7 +11,7 @@ const CreateAccountPage = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [userId, setUserId] = useState(""); // Changed to User ID
+  const [userId, setUserId] = useState(""); 
   const [error, setError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -115,7 +115,7 @@ const CreateAccountPage = () => {
 
   // Microsoft (Hotmail) Sign-In
   const handleMicrosoftSignUp = async () => {
-    const provider = new OAuthProvider('microsoft.com'); // Use Microsoft provider
+    const provider = new OAuthProvider('microsoft.com');
     try {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
