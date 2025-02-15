@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 // Import Firebase auth
-import { auth } from "../firebaseConfig"; // Import Firebase auth instance
-import { signInWithEmailAndPassword } from "firebase/auth"; // Firebase sign-in method
+import { auth } from "../firebaseConfig";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import PageLayout from "../Components/PageLayout";
+import { FaEye, FaEyeSlash } from "react-icons/fa"; 
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(""); // For error handling
+  const [error, setError] = useState(""); 
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -22,6 +24,10 @@ const LoginPage = () => {
     } catch (error) {
       setError("Invalid credentials or user not found!");
     }
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -45,18 +51,31 @@ const LoginPage = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div className="mb-4">
+          <div className="mb-4 relative">
             <label className="block text-sm font-medium text-gray-700 mb-1 font-lato" htmlFor="password">
               Password
             </label>
-            <input
-              type="password"
-              id="password"
-              placeholder="Password"
-              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-pink-500"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                placeholder="Password"
+                className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-pink-500 pr-12" // Added pr-12 for padding
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <button
+                type="button"
+                className="absolute inset-y-0 right-0 pr-3 flex items-center justify-center h-full"
+                onClick={togglePasswordVisibility}
+              >
+                {showPassword ? (
+                  <FaEyeSlash className="text-gray-500 text-xl" /> 
+                ) : (
+                  <FaEye className="text-gray-500 text-xl" /> 
+                )}
+              </button>
+            </div>
           </div>
           {error && (
             <p className="text-red-500 text-sm mb-4">{error}</p>
