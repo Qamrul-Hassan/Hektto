@@ -8,33 +8,36 @@ import { DataContext } from "../Components/DataContext";
 const ProductDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { products, addToCart, toggleWishlist, wishlist } = useContext(DataContext); // Get toggleWishlist and wishlist from context
+  const { products, addToCart, toggleWishlist, wishlist } = useContext(DataContext);
+
   const [product, setProduct] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [activeTab, setActiveTab] = useState("description");
-  const [isZoomed, setIsZoomed] = useState(false); // State for zoom effect
-  const [cartMessage, setCartMessage] = useState(""); // State for cart message
-  const [wishlistMessage, setWishlistMessage] = useState(""); // State for wishlist message
-  const [isInCart, setIsInCart] = useState(false); // Track if item is added to cart
+  const [isZoomed, setIsZoomed] = useState(false);
+  const [cartMessage, setCartMessage] = useState("");
+  const [wishlistMessage, setWishlistMessage] = useState("");
+  const [isInCart, setIsInCart] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
-    const fetchProduct = () => {
-      const product = products.find((item) => item.id === parseInt(id));
-      setProduct(product);
-    };
+    if (!products || products.length === 0) return;
 
-    const fetchRelatedProducts = () => {
-      if (product) {
-        const related = products.filter(
-          (item) => item.category === product.category && item.id !== product.id
-        );
-        setRelatedProducts(related.slice(0, 4)); // Limit to 4 related products
-      }
-    };
+    const selectedProduct = products.find((item) => item.id === parseInt(id));
+    setProduct(selectedProduct);
 
-    fetchProduct();
-    fetchRelatedProducts();
-  }, [id, product, products]);
+    if (selectedProduct) {
+      const related = products.filter(
+        (item) => item.category === selectedProduct.category && item.id !== selectedProduct.id
+      );
+      setRelatedProducts(related.slice(0, 4));
+    }
+  }, [id, products]);
+
+  useEffect(() => {
+    if (product) {
+      setIsLiked(wishlist.includes(product.id));
+    }
+  }, [wishlist, product]);
 
   if (!product) return <div>Loading...</div>;
 
@@ -58,23 +61,17 @@ const ProductDetails = () => {
     );
   };
 
-  const isLiked = wishlist.includes(product?.id); // Check if product is in wishlist
-
   const handleAddToCart = () => {
     addToCart(product);
-    setIsInCart(true); // Set to true when the product is added to the cart
-    setCartMessage("Cart: Item added"); // Show cart message
-    setTimeout(() => setCartMessage(""), 2000); // Clear message after 2 seconds
+    setIsInCart(true);
+    setCartMessage("Cart: Item added");
+    setTimeout(() => setCartMessage(""), 2000);
   };
 
   const handleToggleWishlist = () => {
     toggleWishlist(product.id);
-    if (isLiked) {
-      setWishlistMessage("Item removed from wishlist");
-    } else {
-      setWishlistMessage("Item added to wishlist");
-    }
-    setTimeout(() => setWishlistMessage(""), 2000); // Clear message after 2 seconds
+    setWishlistMessage(isLiked ? "Item removed from wishlist" : "Item added to wishlist");
+    setTimeout(() => setWishlistMessage(""), 2000);
   };
 
   return (
@@ -84,21 +81,14 @@ const ProductDetails = () => {
           <div className="flex flex-col md:flex-row gap-6">
             {/* Thumbnails */}
             <div className="w-full md:w-1/4 flex flex-row md:flex-col gap-4">
-              <img
-                src={product.image}
-                alt={product.title}
-                className="w-1/4 md:w-full h-24 object-contain cursor-pointer"
-              />
-              <img
-                src={product.image}
-                alt={product.title}
-                className="w-1/4 md:w-full h-24 object-contain cursor-pointer"
-              />
-              <img
-                src={product.image}
-                alt={product.title}
-                className="w-1/4 md:w-full h-24 object-contain cursor-pointer"
-              />
+              {[...Array(3)].map((_, index) => (
+                <img
+                  key={index}
+                  src={product.image}
+                  alt={product.title}
+                  className="w-1/4 md:w-full h-24 object-contain cursor-pointer"
+                />
+              ))}
             </div>
 
             {/* Main Image */}
@@ -116,20 +106,14 @@ const ProductDetails = () => {
             <div className="w-full md:w-1/4 flex flex-col justify-between">
               <h1 className="text-xl md:text-2xl font-bold text-gray-800">{product.title}</h1>
               <div className="flex flex-wrap items-center justify-between mt-4">
-                <span className="text-lg font-semibold text-blue-500">
-                  ${product.price}
+                <span className="text-lg font-semibold text-blue-500">${product.price}</span>
+                <span className="text-sm line-through text-red-500">
+                  ${(product.price * 1.2).toFixed(2)}
                 </span>
-                {product.price < product.price * 1.2 && (
-                  <span className="text-sm line-through text-red-500">
-                    ${(product.price * 1.2).toFixed(2)}
-                  </span>
-                )}
               </div>
-              <div className="flex space-x-1 text-yellow-500 mt-2">
-                {renderStars(rating)}
-              </div>
+              <div className="flex space-x-1 text-yellow-500 mt-2">{renderStars(rating)}</div>
 
-              <p className="text-gray-600 mt-4 font-lato">{product.description}</p>
+              <p className="text-gray-600 mt-4">{product.description}</p>
 
               <div className="flex gap-2 mt-4">
                 <span className="font-medium">Colors:</span>
@@ -143,100 +127,49 @@ const ProductDetails = () => {
               <div className="flex gap-3 items-center mt-6">
                 <button
                   className={`p-2 rounded-full cursor-pointer ${
-                    isInCart
-                      ? "bg-pink-600 text-white"
-                      : "bg-white text-pink-600 border border-pink-600"
+                    isInCart ? "bg-pink-600 text-white" : "bg-white text-pink-600 border border-pink-600"
                   }`}
-                  onClick={handleAddToCart} // Add product to cart
+                  onClick={handleAddToCart}
                 >
                   <FaCartPlus />
                 </button>
                 <button
                   className={`p-2 rounded-full cursor-pointer border-2 ${
-                    isLiked
-                      ? "bg-pink-500 border-pink-500 text-white"
-                      : "border-pink-500 text-pink-500"
+                    isLiked ? "bg-pink-500 border-pink-500 text-white" : "border-pink-500 text-pink-500"
                   }`}
-                  onClick={handleToggleWishlist} // Toggle wishlist state
+                  onClick={handleToggleWishlist}
                 >
                   <FaHeart />
                 </button>
                 <button
                   className="text-gray-600 bg-white p-2 rounded-full border cursor-pointer hover:bg-gray-100"
-                  onClick={() => setIsZoomed(!isZoomed)} // Toggle zoom effect
+                  onClick={() => setIsZoomed(!isZoomed)}
                 >
                   <FaSearchPlus />
                 </button>
               </div>
 
-              {/* Cart and Wishlist Message */}
               {cartMessage && <p className="text-pink-500 mt-2">{cartMessage}</p>}
               {wishlistMessage && <p className="text-pink-500 mt-2">{wishlistMessage}</p>}
             </div>
           </div>
 
-          {/* Product Tabs */}
-          <div className="mt-8">
-            <div className="flex space-x-8">
-              <button
-                className={`text-lg font-medium ${
-                  activeTab === "description" ? "text-blue-500" : "text-gray-600"
-                }`}
-                onClick={() => setActiveTab("description")}
-              >
-                Description
-              </button>
-              <button
-                className={`text-lg font-medium ${
-                  activeTab === "reviews" ? "text-blue-500" : "text-gray-600"
-                }`}
-                onClick={() => setActiveTab("reviews")}
-              >
-                Reviews
-              </button>
-            </div>
-
-            <div className="mt-4">
-              {activeTab === "description" ? (
-                <p className="text-gray-600">{product.description}</p>
-              ) : (
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-800">Reviews</h3>
-                  <p className="text-gray-600 mt-4">
-                    No reviews yet. Be the first to write a review!
-                  </p>
-                </div>
-              )}
-            </div>
-          </div>
-
           {/* Related Products */}
           <div className="mt-12">
-            <h3 className="text-2xl font-semibold text-gray-800 font-lato">Related Products</h3>
+            <h3 className="text-2xl font-semibold text-gray-800">Related Products</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
               {relatedProducts.map((relatedProduct) => (
-                <div
-                  key={relatedProduct.id}
-                  className="bg-white shadow-lg rounded-lg overflow-hidden"
-                >
-                  <img
-                    src={relatedProduct.image}
-                    alt={relatedProduct.title}
-                    className="w-full h-48 object-cover"
-                  />
+                <div key={relatedProduct.id} className="bg-white shadow-lg rounded-lg overflow-hidden">
+                  <img src={relatedProduct.image} alt={relatedProduct.title} className="w-full h-48 object-cover" />
                   <div className="p-4">
-                    <h4 className="text-xl font-semibold text-gray-800">
-                      {relatedProduct.title}
-                    </h4>
+                    <h4 className="text-xl font-semibold text-gray-800">{relatedProduct.title}</h4>
                     <p className="text-gray-600 mt-2">${relatedProduct.price}</p>
-                    <div className="mt-4">
-                      <button
-                        className="text-white bg-blue-500 py-2 px-4 rounded-full"
-                        onClick={() => navigate(`/product/${relatedProduct.id}`)}
-                      >
-                        View Details
-                      </button>
-                    </div>
+                    <button
+                      className="text-white bg-blue-500 py-2 px-4 rounded-full mt-4"
+                      onClick={() => navigate(`/product/${relatedProduct.id}`)}
+                    >
+                      View Product
+                    </button>
                   </div>
                 </div>
               ))}
