@@ -1,10 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaArrowUp } from "react-icons/fa";
 
 const Footer = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
+  const [showButton, setShowButton] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowButton(true);
+      } else {
+        setShowButton(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleSignup = () => {
     if (!email || !/\S+@\S+\.\S+/.test(email)) {
@@ -15,8 +30,12 @@ const Footer = () => {
     navigate("/create-account");
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <footer className="bg-[#F1F0FF] text-gray-700 py-8 ">
+    <footer className="bg-[#F1F0FF] text-gray-700 py-8">
       <div className="container mx-auto px-4 lg:px-20">
         <div className="flex flex-wrap justify-between">
           {/* Sign Up Section */}
@@ -100,6 +119,16 @@ const Footer = () => {
           </div>
         </div>
       </div>
+
+      {/* Back to Top Button */}
+      {showButton && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-5 right-5 bg-pink-500 text-white p-3 rounded-full shadow-lg hover:bg-pink-600 transition-all"
+        >
+          <FaArrowUp />
+        </button>
+      )}
     </footer>
   );
 };
