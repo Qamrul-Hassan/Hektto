@@ -1,4 +1,6 @@
-import React, { createContext, useState, useEffect } from "react";
+/* eslint-disable react-refresh/only-export-components */
+import  { createContext, useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
 export const DataContext = createContext();
 
@@ -136,5 +138,9 @@ const DataContextProvider = ({ children }) => {
     </DataContext.Provider>
   );
 };
+DataContextProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default DataContextProvider;
+

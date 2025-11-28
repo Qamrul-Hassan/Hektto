@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import Slider from "react-slick";
 import product1 from "../assets/Image/image-1.png";
 import product2 from "../assets/Image/image-2.png";

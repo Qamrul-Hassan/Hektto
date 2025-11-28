@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 import Blog1Image from '../assets/Image/Frame1.png';
 import Blog2Image from '../assets/Image/Frame2.png';

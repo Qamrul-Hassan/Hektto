@@ -1,45 +1,45 @@
-import React from "react";
-import { Provider } from "react-redux"; // Redux Provider for global state management
-import { createBrowserRouter, RouterProvider } from "react-router-dom"; // Router setup
-import store from "./store"; // Import Redux store
-import RouteLayout from "./Pages/RouteLayout"; // Layout for the pages
-import Home from "./Pages/Home"; // Home page
-import ContactUs from "./Pages/ContactUs"; // Contact Us page
-import BlogPage from "./Pages/BlogPage"; // Blog page
-import Shop from "./Pages/Shop"; // Shop page
-import ProductDetails from "./Pages/ProductDetails"; // Product Details page
-import NotFound from "./Pages/NotFound"; // 404 page
-import LoginPage from "./Pages/LoginPage"; // Login page
-import ShopCartPage from "./Pages/ShopCartPage"; // Shopping Cart page
-import ShopWishList from "./Pages/ShopWishList"; // Shop Wish List page
-import CreateAccountPage from "./Pages/CreateAccountPage"; // Create Account page
-import ForgotPasswordPage from "./Pages/ForgotPasswordPage"; // Forgot Password page
-import DataProvider from "./Components/DataContext"; // Custom context provider
-import FAQPage from "./Pages/FAQPage"; // FAQ page
-import AboutUs from "./Pages/AboutUs"; // About Us page
-import Dashboard from "./Pages/Dashboard"; // Import the Dashboard page
+
+import { Provider } from "react-redux"; 
+import { createBrowserRouter, RouterProvider } from "react-router-dom"; 
+import store from "./store";
+import RouteLayout from "./Pages/RouteLayout";
+import Home from "./Pages/Home";
+import ContactUs from "./Pages/ContactUs";
+import BlogPage from "./Pages/BlogPage";
+import Shop from "./Pages/Shop"; 
+import ProductDetails from "./Pages/ProductDetails"; 
+import NotFound from "./Pages/NotFound";
+import LoginPage from "./Pages/LoginPage";
+import ShopCartPage from "./Pages/ShopCartPage";
+import ShopWishList from "./Pages/ShopWishList"; 
+import CreateAccountPage from "./Pages/CreateAccountPage";
+import ForgotPasswordPage from "./Pages/ForgotPasswordPage"; 
+import DataProvider from "./Components/DataContext"; 
+import FAQPage from "./Pages/FAQPage"; 
+import AboutUs from "./Pages/AboutUs"; 
+import Dashboard from "./Pages/Dashboard"; 
 import Customers from "./Pages/Customers";
 // Define the router configuration with different routes for each page
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <RouteLayout />, // Base layout for all pages
+    element: <RouteLayout />,
     children: [
-      { index: true, element: <Home /> }, // Home route
-      { path: "contact", element: <ContactUs /> }, // Contact Us route
-      { path: "blog", element: <BlogPage /> }, // Blog route
-      { path: "shop", element: <Shop /> }, // Shop route
-      { path: "product/:id", element: <ProductDetails /> }, // Product Details route
-      { path: "login", element: <LoginPage /> }, // Login route
-      { path: "create-account", element: <CreateAccountPage /> }, // Create Account route
-      { path: "cart", element: <ShopCartPage /> }, // Cart route
-      { path: "shop-wishlist", element: <ShopWishList /> }, // Shop Wish List route
-      { path: "forgot-password", element: <ForgotPasswordPage /> }, // Forgot Password route
-      { path: "about-us", element: <AboutUs /> }, // About Us route
-      { path: "faq", element: <FAQPage /> }, // FAQ route
-      { path: "dashboard", element: <Dashboard /> }, // Dashboard 
+      { index: true, element: <Home /> },
+      { path: "contact", element: <ContactUs /> },
+      { path: "blog", element: <BlogPage /> },
+      { path: "shop", element: <Shop /> },
+      { path: "product/:id", element: <ProductDetails /> },
+      { path: "login", element: <LoginPage /> },
+      { path: "create-account", element: <CreateAccountPage /> },
+      { path: "cart", element: <ShopCartPage /> },
+      { path: "shop-wishlist", element: <ShopWishList /> },
+      { path: "forgot-password", element: <ForgotPasswordPage /> },
+      { path: "about-us", element: <AboutUs /> },
+      { path: "faq", element: <FAQPage /> },
+      { path: "dashboard", element: <Dashboard /> },
       { path: "customers", element: <Customers /> },
-      { path: "*", element: <NotFound /> }, // Not Found route for unmatched URLs
+      { path: "*", element: <NotFound /> },
     ],
   },
 ]);

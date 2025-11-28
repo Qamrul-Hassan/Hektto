@@ -1,4 +1,4 @@
-import React from "react";
+
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import discountItemImage from "../assets/Image/DiscountItem.png";
 

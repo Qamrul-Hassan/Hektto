@@ -1,4 +1,4 @@
-import React from "react";
+
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import backgroundImage from "../assets/Image/Rectangle.png";
 

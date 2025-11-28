@@ -1,4 +1,4 @@
-import React from "react";
+
 import DeliveryImage from "../assets/Image/delivery.png";
 import CashbackImage from "../assets/Image/cashback.png";
 import PremiumImage from "../assets/Image/premium.png";
